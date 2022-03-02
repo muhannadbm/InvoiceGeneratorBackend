@@ -4,10 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon",
+    "start": "node index.js",
+    "server": "nodemon index.js",
     "migrate": "knex migrate:latest",
-    "rollback": "knex migrate:rollback"
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run",
+    "migrateh": "heroku run knex migrate:latest -a  fitness-bw",
+    "rollbackh": "heroku run knex migrate:rollback -a  fitness-bw",
+    "databaseh": "heroku pg:psql -a  fitness-bw",
+    "seedh": "heroku run knex seed:run -a  fitness-bw",
+    "test": "cross-env NODE_ENV=testing jest --watchAll --verbose --runInBand",
+    "deploy": "git push heroku main"
   },
   "keywords": [],
   "author": "",
