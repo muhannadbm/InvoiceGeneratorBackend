@@ -4,7 +4,7 @@
  * @type { Object.<string, import("knex").Knex.Config> }
  */
  const sharedConfig = {
-  client: 'sqlite3',
+  client: 'postgresql',
   useNullAsDefault: true,
   migrations: {
     directory: './data/migrations',
@@ -23,11 +23,25 @@
 module.exports = {
 
   development: {
-    ...sharedConfig,
-    connection: {
-      filename: 'data/migrations/dev.sqlite3'
-    }
+  //   ...sharedConfig,
+  //   connection: {
+  //     filename: 'data/migrations/dev.sqlite3'
+  //   }
+  // },
+  client: 'postgresql',
+  connection: {
+    database: 'my_db',
+    user:     'username',
+    password: 'password'
   },
+  pool: {
+    min: 2,
+    max: 10
+  },
+  migrations: {
+    tableName: 'knex_migrations'
+  }
+},
 
   staging: {
     client: 'postgresql',
@@ -44,18 +58,14 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
+    client: 'pq',
+    connection: process.env.DATABASE_URL,
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
+      directory: './migrations'
     }
   }
 

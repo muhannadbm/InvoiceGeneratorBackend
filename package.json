@@ -9,10 +9,10 @@
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
-    "migrateh": "heroku run knex migrate:latest -a  fitness-bw",
-    "rollbackh": "heroku run knex migrate:rollback -a  fitness-bw",
-    "databaseh": "heroku pg:psql -a  fitness-bw",
-    "seedh": "heroku run knex seed:run -a  fitness-bw",
+    "migrateh": "heroku run knex migrate:latest -a  invoice-id-generator",
+    "rollbackh": "heroku run knex migrate:rollback -a  invoice-id-generator",
+    "databaseh": "heroku pg:psql -a  invoice-id-generator",
+    "seedh": "heroku run knex seed:run -a  invoice-id-generator",
     "test": "cross-env NODE_ENV=testing jest --watchAll --verbose --runInBand",
     "deploy": "git push heroku main"
   },
@@ -26,6 +26,8 @@
     "express": "^4.17.3",
     "knex": "^1.0.3",
     "nodemon": "^2.0.15",
+    "pg": "^8.7.3",
+    "postgresql": "0.0.1",
     "sqlite3": "^5.0.2"
   }
 }
